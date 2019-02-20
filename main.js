@@ -56,7 +56,7 @@ var meats = ['Bacon', 'ham'];
 var food = ['apples', ...meats, 'kiwi', 'rice'];
 console.log(food);
 
-//Classes
+//Classes & Inheritance
 
 class Person{
    constructor(name, age, weight) {
@@ -65,10 +65,64 @@ class Person{
        this.weight = weight;
    }
 
+   displayName() {
+    console.log(this.name);
+   } 
+    displayAge() {
+    console.log(this.age);
+   }
+
    displayWeight() {
        console.log(this.weight);
    }
 }
 
+class Programmer extends Person {
+
+    constructor(name, age, weight, language) {
+        super(name, age, weight);
+        this.language = language;
+    }
+
+    displayLanguage() {
+        console.log(this.language);
+    }
+
+}
+
 let Emanuel = new Person("Emanuel",21,67);
+let John = new Programmer('John', 25, 76, 'JavaScript');
 Emanuel.displayWeight();
+Emanuel.displayAge();
+console.log('--------------------------------');
+John.displayAge();
+John.displayName();
+John.displayLanguage();
+
+console.log('----------------------');
+//Generator Function
+
+function* simpleGenerator() {
+    yield 'Emanuel';
+    yield 'John';
+    console.log('Ok this is just a simple line');
+    yield 'Ann';
+}
+
+let sample = simpleGenerator();
+console.log(sample.next().value);
+console.log(sample.next().value);
+console.log(sample.next().value);
+console.log('-----------------------');
+
+function* getNextId() {
+    let id = 0;
+    while(id < 3) {
+        yield id++;
+    }
+}
+
+let createUser = getNextId();
+console.log(createUser.next().value);
+console.log(createUser.next().value);
+console.log(createUser.next().value);
